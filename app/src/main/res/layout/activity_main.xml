@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context="com.dev.dagorik.quizapp.MainActivity">
+
+
+    <ImageView
+        android:id="@+id/img_cap"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/cap"
+        />
+
+    <EditText
+        android:id="@+id/user"
+        android:layout_below="@id/img_cap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_centerInParent="true"
+        android:hint="UserName"
+        android:drawableLeft="@mipmap/ic_launcher"
+        />
+    <Button
+        android:id="@+id/btn_iniciar"
+        android:layout_below="@id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Inicia!"
+        />
+
+
+</RelativeLayout>
