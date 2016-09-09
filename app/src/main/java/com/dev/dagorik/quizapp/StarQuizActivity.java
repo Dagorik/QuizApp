@@ -13,7 +13,7 @@ public class StarQuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_star_quiz);
 
-        QuestionFragment questionFragment= new QuestionFragment(1);
+        QuestionFragment questionFragment= new QuestionFragment("¿De a como?");
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()

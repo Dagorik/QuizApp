@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.dev.dagorik.quizapp.R;
 
@@ -15,10 +16,11 @@ import com.dev.dagorik.quizapp.R;
 public class QuestionFragment extends Fragment {
 
 
-    private int position;
+    private String title;
+    private TextView tvTitle;
 
-    public QuestionFragment(int position) {
-        this.position = position;
+    public QuestionFragment(String title) {
+        this.title = title;
     }
 
     public QuestionFragment() {
@@ -32,6 +34,8 @@ public class QuestionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_question, container, false);
 
+        tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+        tvTitle.setText(title);
 
         return view;
     }
