@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.dev.dagorik.quizapp.fragments.QuestionFragment;
 
@@ -20,16 +21,18 @@ public class StarQuizActivity extends AppCompatActivity implements View.OnClickL
     private QuestionFragment questionFragment;
     private ImageView iv_left, iv_right;
 
-    private int questionPosition;
+    private int questionPosition = 0;
+    private int respuestasCorrectas = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_star_quiz);
 
+        initView();
         initPreguntas();
         initRespuestas();
-        cambiarFragment(0);
+        cambiarFragment(questionPosition);
 
     }
 
@@ -72,8 +75,8 @@ public class StarQuizActivity extends AppCompatActivity implements View.OnClickL
 
     private void initView() {
         //Declarando
-        iv_left= (ImageView) findViewById(R.id.iv_left);
-        iv_right= (ImageView) findViewById(R.id.iv_right);
+        iv_left = (ImageView) findViewById(R.id.iv_left);
+        iv_right = (ImageView) findViewById(R.id.iv_right);
 
         //El escuchador de los botones
         iv_left.setOnClickListener(this);
@@ -82,14 +85,25 @@ public class StarQuizActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
             case R.id.iv_left:
-                //No hace nada por el momento position =0
+                if (questionPosition >= 0) {
+                    cambiarFragment(questionPosition--);
+                } else
+                    Toast.makeText(StarQuizActivity.this, "No puedes ir mas atras", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iv_right:
+                if (questionFragment.getRespuesta() == mListRespuestas.get(questionPosition)) {
+                    respuestasCorrectas++;
+                }
+                if (questionPosition < 8) {
+                    cambiarFragment(questionPosition++);
+                } else
+                    Toast.makeText(StarQuizActivity.this, "Tus respuestas correctas fueron:" + respuestasCorrectas, Toast.LENGTH_SHORT).show();
 
-            break;
+                break;
+
         }
     }
 }

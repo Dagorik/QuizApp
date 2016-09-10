@@ -21,6 +21,8 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     private TextView tvTitle;
     private Button btn_true, btn_false;
 
+    private int respuesta;
+
     public QuestionFragment(String title) {
         this.title = title;
     }
@@ -57,12 +59,19 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_true:
                 btn_true.setBackgroundResource(R.color.colorTrue);
                 btn_false.setBackgroundResource(R.color.colorAmbar);
+                respuesta=1;
                 break;
 
             case R.id.btn_false:
                 btn_false.setBackgroundResource(R.color.colorFalse);
                 btn_true.setBackgroundResource(R.color.colorAmbar);
+                respuesta=0;
                 break;
         }
+    }
+
+    public int getRespuesta(){
+
+        return respuesta;
     }
 }
