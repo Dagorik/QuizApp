@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this,"Ingresa un usuario", Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(this,StarQuizActivity.class);
+//                    Para enviar datos de a otra actividad
+                    intent.putExtra("user",usuario);
                     startActivity(intent);
                 }
 
