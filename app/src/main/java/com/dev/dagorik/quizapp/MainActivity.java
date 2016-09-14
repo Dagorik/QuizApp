@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else{
                     Intent intent = new Intent(this,StarQuizActivity.class);
 //                    Para enviar datos de a otra actividad
-                    intent.putExtra("user",usuario);
+                    intent.putExtra("user",usuario); //Usuer == key!
                     startActivity(intent);
                 }
 

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.dev.dagorik.quizapp.fragments.QuestionFragment;
+import com.dev.dagorik.quizapp.fragments.ResultadoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class StarQuizActivity extends AppCompatActivity implements View.OnClickL
 
     private int questionPosition = 0;
     private int respuestasCorrectas = 0;
+    private String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,12 @@ public class StarQuizActivity extends AppCompatActivity implements View.OnClickL
         initRespuestas();
         cambiarFragment(questionPosition);
 
+        //Tomar los datos de una actividad atras
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            user = extras.getString("user");
+        }
     }
 
     private void cambiarFragment(int position) {
@@ -57,7 +65,6 @@ public class StarQuizActivity extends AppCompatActivity implements View.OnClickL
         mListPreguntas.add("¿El mejor motor de ford es el 351?");
         mListPreguntas.add("¿Big block es considerado desde el 400?");
         mListPreguntas.add("¿Slan-Six es de Chevrolet?");
-
     }
 
     private void initRespuestas() {
@@ -83,6 +90,17 @@ public class StarQuizActivity extends AppCompatActivity implements View.OnClickL
         iv_right.setOnClickListener(this);
     }
 
+    private void FragmentFinal() {
+
+        ResultadoFragment resultadoFragment = new ResultadoFragment(user, respuestasCorrectas);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frameLayaut, resultadoFragment)
+                .commit();
+
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -90,17 +108,22 @@ public class StarQuizActivity extends AppCompatActivity implements View.OnClickL
             case R.id.iv_left:
                 if (questionPosition >= 0) {
                     cambiarFragment(questionPosition--);
+                    if (questionPosition < 0) {
+                        questionPosition = 0;
+                    }
                 } else
                     Toast.makeText(StarQuizActivity.this, "No puedes ir mas atras", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iv_right:
-                if (questionFragment.getRespuesta() == mListRespuestas.get(questionPosition)) {
-                    respuestasCorrectas++;
+                if (questionPosition == mListPreguntas.size() - 1) {
+                    FragmentFinal();
+                } else {
+                    if (questionFragment.getRespuesta() == mListRespuestas.get(questionPosition)) {
+                        respuestasCorrectas++;
+                    }
+                    questionPosition++;
+                    cambiarFragment(questionPosition);
                 }
-                if (questionPosition < 8) {
-                    cambiarFragment(questionPosition++);
-                } else
-                    Toast.makeText(StarQuizActivity.this, "Tus respuestas correctas fueron:" + respuestasCorrectas, Toast.LENGTH_SHORT).show();
 
                 break;
 
