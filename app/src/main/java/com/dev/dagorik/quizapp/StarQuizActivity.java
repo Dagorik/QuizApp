@@ -50,6 +50,7 @@ public class StarQuizActivity extends AppCompatActivity implements View.OnClickL
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_right_enter, R.anim.slide_left_exit)
                 .replace(R.id.frameLayaut, questionFragment)
                 .commit();
 
@@ -96,6 +97,7 @@ public class StarQuizActivity extends AppCompatActivity implements View.OnClickL
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_right_enter, R.anim.slide_left_exit)
                 .replace(R.id.frameLayaut, resultadoFragment)
                 .commit();
 
