@@ -1,6 +1,7 @@
 package com.dev.dagorik.quizapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,8 +19,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        user=(EditText)findViewById(R.id.user);
-        btnIniciar=(Button)findViewById(R.id.btn_iniciar);
+        user = (EditText) findViewById(R.id.user);
+        btnIniciar = (Button) findViewById(R.id.btn_iniciar);
 
         btnIniciar.setOnClickListener(this);
 
@@ -28,22 +29,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
 
             case R.id.btn_iniciar:
 
-                String usuario= user.getText().toString();
-                if (usuario.isEmpty()){
-                    Toast.makeText(this,"Ingresa un usuario", Toast.LENGTH_SHORT).show();
-                }else{
-                    Intent intent = new Intent(this,StarQuizActivity.class);
-//                    Para enviar datos de a otra actividad
-                    intent.putExtra("user",usuario); //Usuer == key!
+                String usuario = user.getText().toString();
+                if (usuario.isEmpty()) {
+                    Toast.makeText(this, "Ingresa un usuario", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    //Almacenar datos
+                    SharedPreferences preferences = this.getSharedPreferences("preferenciasQuiz", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("user",usuario);
+                    editor.putInt("random",10);
+                    editor.commit();
+
+
+
+                    Intent intent = new Intent(this, StarQuizActivity.class);
+
+                    // Para enviar datos de a otra actividad
+                    intent.putExtra("user", usuario); //Usuer == key!
                     startActivity(intent);
+
+
                 }
-
-
-            break;
+                break;
 
         }
 
