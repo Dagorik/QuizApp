@@ -35,18 +35,16 @@ public class ResultadoFragment extends Fragment {
         //Obtener datos por el SharendPreferences
         SharedPreferences preferences = getActivity().getSharedPreferences("preferenciasQuiz", Context.MODE_PRIVATE);
         String username = preferences.getString("user", "ÑO");
-        int random = preferences.getInt("random",0);
+        int random = preferences.getInt("random", 0);
 
         //Obtener datos por el putextra
         tvUser.setText(user);
         tv_resultado.setText(resultado + "");
 
         //Mostrando los dato obetenidos del shared preferences
-        Toast.makeText(getActivity(),"Random: " + random +"User name por preferences: " +username, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "Random: " + random + " UserName por preferences: " + username, Toast.LENGTH_LONG).show();
 
         return view;
-
-
     }
 
 }
