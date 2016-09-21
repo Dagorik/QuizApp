@@ -1,1 +1,1 @@
-include ':app', ':realexamplebd', ':login'
+include ':app', ':realexamplebd', ':login', ':recycler'

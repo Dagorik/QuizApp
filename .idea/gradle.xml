@@ -12,16 +12,10 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/login" />
             <option value="$PROJECT_DIR$/realexamplebd" />
+            <option value="$PROJECT_DIR$/recycler" />
           </set>
         </option>
-        <option name="myModules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/login" />
-            <option value="$PROJECT_DIR$/realexamplebd" />
-          </set>
-        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

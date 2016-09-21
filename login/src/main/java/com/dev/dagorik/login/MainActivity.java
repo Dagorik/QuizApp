@@ -1,9 +1,14 @@
 package com.dev.dagorik.login;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.dev.dagorik.login.fragments.BlankFragment;
 import com.dev.dagorik.login.models.Users;
@@ -13,9 +18,11 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private BlankFragment blankFragment;
+    private TextView tv_createUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +31,11 @@ public class MainActivity extends AppCompatActivity {
         fragment();
         Users user = new Users("Raul", "123", 28);
         guardarUsuario(user);
-        printUsuarios();
+
+        tv_createUser = (TextView) findViewById(R.id.tv_createUser);
+
+
+        tv_createUser.setOnClickListener(this);
     }
 
     public void fragment(){
@@ -55,20 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void printUsuarios() {
 
-        // Create a RealmConfiguration that saves the Realm file in the app's "files" directory.
-        RealmConfiguration realmConfig = new RealmConfiguration.Builder(this).build();
-        Realm.setDefaultConfiguration(realmConfig);
+    @Override
+    public void onClick(View view) {
 
-        // Get a Realm instance for this thread
-        Realm realm = Realm.getDefaultInstance();
+        Intent intent = new Intent(this, Registro.class);
+        startActivity(intent);
 
-        List<Users> allUser = realm.where(Users.class).findAll();
-
-        for (int i = 0; i < allUser.size(); i++) {
-            Log.i("Lista de usuarios", "User: " + allUser.get(i));
-        }
     }
-
 }

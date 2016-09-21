@@ -43,9 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void printUsuarios() {
 
-        // Create a RealmConfiguration that saves the Realm file in the app's "files" directory.
-        RealmConfiguration realmConfig = new RealmConfiguration.Builder(this).build();
-        Realm.setDefaultConfiguration(realmConfig);
 
         // Get a Realm instance for this thread
         Realm realm = Realm.getDefaultInstance();
